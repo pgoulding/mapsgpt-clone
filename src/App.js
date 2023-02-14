@@ -1,23 +1,21 @@
-import logo from './logo.svg';
+import logo from './mapsGPT-logo.png';
 import './App.css';
+import ContentFormContainer from './ContentFormContainer';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div className="marquee-wrapper">
+          <p> Marquee Placeholder 1 </p>
+          <p> Marquee Placeholder 2 </p>
+          <p> Marquee Placeholder 3 </p>
+        </div>
+        <div>
+          <img src={logo} />
+        </div>
       </header>
+      <ContentFormContainer />
     </div>
   );
 }
