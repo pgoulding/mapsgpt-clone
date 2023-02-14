@@ -8,6 +8,9 @@ import Typography from '@mui/material/Typography';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import { StepContent, TextField } from '@mui/material';
+import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
+import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
+import RestartAltOutlinedIcon from '@mui/icons-material/RestartAltOutlined';
 
 const steps = ['Places to find', 'Near map location', 'Contact Info'];
 
@@ -16,7 +19,7 @@ export default function FormStepper() {
   const [skipped, setSkipped] = React.useState(new Set<number>());
   const [loading, setLoading] = React.useState(false)
   const [formCompleted, completeForm] = React.useState(false)
-  
+
   const isStepOptional = (step: number) => {
     // set optional steps by index
     return step === 3;
@@ -58,13 +61,18 @@ export default function FormStepper() {
 
   const handleReset = () => {
     setActiveStep(0);
+    completeForm(false)
   };
 
   const handleSubmit = () => {
       setLoading(true)
       // await request to the server
       // pretend to process something for now
-      setTimeout(() => {setLoading(false)}, 2000)
+      setTimeout(() => {
+        setLoading(false)
+        completeForm(true)
+      }, 2000)
+      
 
   }
 
@@ -84,8 +92,10 @@ export default function FormStepper() {
         {steps.map((label) => {
           const stepProps: { completed?: boolean } = {};
           return (
-            <Step key={label} {...stepProps}>
-              <StepLabel>{label}</StepLabel>
+            <Step 
+            key={label} 
+            {...stepProps}>
+              <StepLabel StepIconComponent={PlaceOutlinedIcon}>{label}</StepLabel>
             </Step>
           );
         })}
@@ -106,8 +116,8 @@ export default function FormStepper() {
           }
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2, justifyContent:'space-between'}}>
             <Box sx={{ flex: '1 1 auto' }} />
-            <Button onClick={handleSubmit} variant='contained'>Submit</Button>
-            <Button onClick={handleReset}>Reset</Button>
+            {!formCompleted && (<Button onClick={handleSubmit} variant='contained'>Build My Map <MapOutlinedIcon/></Button>)}
+            <Button onClick={handleReset}>Restart <RestartAltOutlinedIcon/></Button>
           </Box>
         </React.Fragment>
       ) : (
