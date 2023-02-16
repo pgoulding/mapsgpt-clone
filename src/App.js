@@ -1,18 +1,12 @@
 import * as React from 'react';
-import { useState, useEffect, useRef } from 'react';
 import logo from './mapsGPT-logo.png';
 import './App.css';
 import ContentFormContainer from './ContentFormContainer';
 import { Box, Typography, AppBar, Toolbar, Slide, Paper, Card } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
-import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
-import SwipeableTextMobileStepper from './MarqueeStepper';
+import MarqueeText from './MarqueeText';
 
 function App() {
-  const [textToggle, setTextToggle] = useState(false)
-  const [textCount, setTextCount] = useState(0)
-  const [marqueeText, setMarqueeText] = useState('')
-  const containerRef = useRef(null);
   
   const textyTexterson = [
     'lorem ipsum dolor sit amet consectetur',
@@ -27,30 +21,11 @@ function App() {
     'dui mollis tempus at magna vestibulum', 
     'turpis ac diam'
   ]
-  
-  useEffect(() => {
-    setMarqueeText(textyTexterson[textCount])
-    const interval = setInterval(() => {
-      if(textCount < textyTexterson.length) {
-        console.log(textCount)
-        setTextCount(textCount => textCount +1)
-      } else {
-        setTextCount(0)
-      }
-    }, 2000);
-    console.log(marqueeText)
-    return () => clearInterval(interval);
-    
-  }, []);
-
-
 
   return (
     <div className="App">
-        <AppBar position='sticky' sx={{flexDirection:'row',background:'#fcac08', height:' 2rem'}}>
-          <Toolbar>
-            <SwipeableTextMobileStepper />
-          </Toolbar>
+        <AppBar position='sticky' sx={{flexDirection:'row',background:'#fcac08', height:'2rem'}}>
+            <MarqueeText textArray={textyTexterson} />
         </AppBar>
         <Box>
 
