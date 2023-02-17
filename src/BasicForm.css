@@ -1,0 +1,15 @@
+form {
+    display: "flex";
+    flex-direction: "column";
+    align-items: "center";
+    padding: '5px';
+}
+
+.formControl {
+    margin: '10px';
+    min-width: 120;
+}
+
+.submitButton {
+    margin: '10px';
+}
