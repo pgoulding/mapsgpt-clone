@@ -2,39 +2,25 @@ import React, { useState } from "react";
 import {
   TextField,
   Button,
-  makeStyles,
-  FormControl
+  FormControl,
+  CircularProgress,
+  Typography
 } from "@mui/material";
-
-const useStyles = makeStyles((theme) => ({
-  form: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    padding: '5px',
-  },
-  formControl: {
-    margin: '10px',
-    minWidth: 120,
-  },
-  submitButton: {
-    margin: '10px',
-  },
-}));
+import dancingCat from './dancingcat.gif'
 
 const BasicForm = () => {
-  // const classes = useStyles();
-  const [places, setPlaces] = useState("");
+  const [place, setPlace] = useState("");
   const [area, setArea] = useState("");
   const [email, setEmail] = useState("");
-  const [placesError, setPlacesError] = useState(false);
+  const [placeError, setPlaceError] = useState(false);
   const [areaError, setAreaError] = useState(false);
   const [emailError, setEmailError] = useState(false);
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (places === "") {
-      setPlacesError(true);
+    if (place === "") {
+      setPlaceError(true);
     }
     if (area === "") {
       setAreaError(true);
@@ -42,15 +28,31 @@ const BasicForm = () => {
     if (email === "") {
       setEmailError(true);
     }
-    if (places !== "" && area !== "" && email !== "") {
+    if (place !== "" && area !== "" && email !== "") {
       // do something with the form data, such as sending it to a server
-      console.log({ places, area, email });
+      setLoading(true)
+      console.log({ place, area, email });
+      // mock waiting for server response 
+      const interval = setTimeout(() => {
+        setLoading(false)
+      }, 8000);
+  
+      return () => clearInterval(interval);
     }
   };
 
-  const handlePlacesChange = (event) => {
-    setPlaces(event.target.value);
-    setPlacesError(false);
+  const verifyEmail = (inputText) => {
+    const mailformat = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+    if(inputText.value.match(mailformat)){
+      return false
+    } else {
+      return true
+    }
+  }
+
+  const handlePlaceChange = (event) => {
+    setPlace(event.target.value);
+    setPlaceError(false);
   };
 
   const handleAreaChange = (event) => {
@@ -65,45 +67,52 @@ const BasicForm = () => {
 
   return (
     <form 
-      onSubmit={handleSubmit} 
-      style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          height:'100%',
-          justifyContent:'space-between',
-          padding: '5px',
-        }}>
-      <FormControl 
-        style={{
-          minWidth: 180,
-        }}>
+    onSubmit={handleSubmit} 
+    style={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent:'space-between',
+      minHeight:'300px',
+      width:'100%',
+      padding: '5px',
+    }}>
+    {loading &&
+    <React.Fragment>
+      <Typography>Building your Map</Typography>
+      <CircularProgress sx={{margin:'10px'}}/>
+      <img src={dancingCat} />
+    </React.Fragment>
+    } 
+    { !loading &&
+    <React.Fragment>
+      <FormControl className="formControl">
         <TextField
-          id="places"
-          label="Places"
-          value={places}
-          onChange={handlePlacesChange}
-          error={placesError}
-          helperText={placesError ? "Please enter a valid place" : ""}
+        fullWidth
+          id="place"
+          label="Find me these places"
+          value={place}
+          onChange={handlePlaceChange}
+          error={placeError}
+          helperText={placeError ? "Please enter a valid kind of place" : ""}
         />
       </FormControl>
-      <FormControl
-        style={{
-          minWidth: 120,
-        }}>
+      <FormControl className="formControl">
         <TextField
+          fullWidth
           id="area"
-          label="Area"
+          label="Near this area"
           value={area}
           onChange={handleAreaChange}
           error={areaError}
-          helperText={areaError ? "Please enter a valid area" : ""}
+          helperText={areaError ? "Please enter a valid location" : ""}
         />
       </FormControl>
-      <FormControl>
+      <FormControl className="formControl">
         <TextField
+        fullWidth
           id="email"
-          label="Email"
+          label="Email Address"
           value={email}
           onChange={handleEmailChange}
           error={emailError}
@@ -114,9 +123,12 @@ const BasicForm = () => {
         variant="contained"
         color="primary"
         type="submit"
+        className="submitButton"
       >
         Submit
       </Button>
+      </React.Fragment>
+      }
     </form>
   );
 };
