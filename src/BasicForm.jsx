@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   TextField,
   Button,
@@ -6,9 +6,10 @@ import {
   CircularProgress,
   Typography
 } from "@mui/material";
+import './BasicForm.css'
 import dancingCat from './dancingcat.gif'
 
-const BasicForm = () => {
+const BasicForm = ({idea, toggleShowForm}) => {
   const [place, setPlace] = useState("");
   const [area, setArea] = useState("");
   const [email, setEmail] = useState("");
@@ -28,27 +29,43 @@ const BasicForm = () => {
     if (email === "") {
       setEmailError(true);
     }
-    if (place !== "" && area !== "" && email !== "") {
+    if (place !== "" && area !== "" && email !== "" && !emailError) {
       // do something with the form data, such as sending it to a server
       setLoading(true)
       console.log({ place, area, email });
+      
       // mock waiting for server response 
       const interval = setTimeout(() => {
         setLoading(false)
-      }, 8000);
+        toggleShowForm(false)
+      }, 5000);
   
       return () => clearInterval(interval);
     }
   };
 
-  const verifyEmail = (inputText) => {
-    const mailformat = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-    if(inputText.value.match(mailformat)){
-      return false
-    } else {
-      return true
+  useEffect(() => {
+    if(idea) {
+      setPlace(idea)
     }
-  }
+  
+    return () => {
+      
+    }
+  }, [idea])
+  
+
+
+
+  // const verifyEmail = (inputText) => {
+  //   const mailformat = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+  //   console.log(inputText)
+  //   if(inputText.value.match(mailformat)){
+  //     return false
+  //   } else {
+  //     return true
+  //   }
+  // }
 
   const handlePlaceChange = (event) => {
     setPlace(event.target.value);
@@ -79,9 +96,9 @@ const BasicForm = () => {
     }}>
     {loading &&
     <React.Fragment>
-      <Typography>Building your Map</Typography>
+      <Typography>Building your Map...</Typography>
       <CircularProgress sx={{margin:'10px'}}/>
-      <img src={dancingCat} />
+      <img src={dancingCat} alt="Dancing cat loading image"/>
     </React.Fragment>
     } 
     { !loading &&

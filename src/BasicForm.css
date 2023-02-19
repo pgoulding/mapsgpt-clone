@@ -2,7 +2,7 @@ form {
     display: "flex";
     flex-direction: "column";
     align-items: "center";
-    padding: '5px';
+    padding: 5px;
 }
 
 .formControl {
@@ -11,5 +11,21 @@ form {
 }
 
 .submitButton {
-    margin: '10px';
+    margin: 10px;
+    min-width: 200px;
+    max-width: 300px;
+    transition: 0.3s cubic-bezier(.47,1.64,.41,.8);
+    border-radius: 50px;
+    background:linear-gradient(to right, rgb(129,212,101), rgba(0,212,255,1));
+}
+
+.submitButton:hover {
+  transform: scale(1.1);
+}
+
+.submitButton.label {
+    color: 'white';
+    text-transform: none;
+    font-size: 15;
+    font-weight: 700;
 }
