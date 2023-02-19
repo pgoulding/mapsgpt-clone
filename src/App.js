@@ -1,11 +1,12 @@
 import * as React from 'react';
 import logo from './mapsGPT-logo.png';
 import './App.css';
-import ContentFormContainer from './ContentFormContainer';
-import { Box, Typography, AppBar, Toolbar, Slide, Paper, Card } from '@mui/material';
+import { Box, Typography, AppBar, Container } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import MarqueeText from './MarqueeText';
 import LeaderBoard from './LeaderBoards';
+import BasicForm from './BasicForm';
+import { useState } from 'react';
 
 function App() {
   
@@ -58,16 +59,28 @@ function App() {
     "places where people are chatty near kansas"
   ]
 
+  const [idea, setIdea] = useState('')
+
+
+  const selectIdea = (passedIdea) =>{
+    console.log(passedIdea)
+    setIdea(passedIdea)
+  }
+
 
   return (
     <div className="App">
         <AppBar position='sticky' sx={{flexDirection:'row',background:'#fcac08', height:'2rem'}}>
-            <MarqueeText textArray={textyTexterson} />
+            <MarqueeText textArray={textyTexterson} selectIdea={selectIdea}/>
         </AppBar>
         <div>
           <img src={logo} style={{maxWidth:"100%", height:'auto'}}/>
         </div>
-      <ContentFormContainer />
+          <Container maxWidth="sm">
+            <Box sx={{ bgcolor: '#cfe8fc', minHeight: 300, padding:"20px"}}>
+                <BasicForm idea={idea}/>
+          </Box>
+        </Container>
       <Typography sx={{ mt: 2, mb: 1, padding:'1rem', fontStyle:'italic', color:'GrayText'}}>
         This map is curated out of aggregated data, however we can not guarantee it is completely accurate or is up to date. We recommend contacting locations on the map to verify the details. We are not responsible for any actions you take based on the produced map.
       </Typography>
@@ -80,7 +93,7 @@ function App() {
         height:'400px',
         flexGrow:1
         }}>
-        <Grid container spacing={{xs:2, md:3}} columns={{ xs: 4, sm: 8, md: 12 }}>
+        <Grid container spacing={{xs:2, md:3}} columns={{ xs: 4, sm: 8, md: 12 }} sx={{margin:'auto', alignItems:'flex-start'}}>
           <Grid xs={4} sm={4} md={4} >
             <LeaderBoard items={mostViewed} cardTitle={"MOST VIEWED"} />
           </Grid>
