@@ -61,7 +61,7 @@ function App() {
   ]
 
   const [idea, setIdea] = useState('')
-  const [showForm, setShowForm] = useState(false)
+  const [showForm, setShowForm] = useState(true)
 
   useEffect(() => {
     // default to a location near the user
