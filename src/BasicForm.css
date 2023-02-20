@@ -1,25 +1,26 @@
 form {
-    display: "flex";
-    flex-direction: "column";
-    align-items: "center";
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 5px;
 }
 
 .formControl {
-    margin: '10px';
-    min-width: 120;
+    margin: 10px;
+    width: 100%;
 }
 
 .submitButton {
     min-width: 200px;
+    margin: auto;
     max-width: 300px;
     transition: 0.3s cubic-bezier(.47,1.64,.41,.8);
     border-radius: 50px;
-    background:linear-gradient(to right, rgb(129,212,101), rgba(0,212,255,1));
+    background:linear-gradient(to right, rgba(80, 189, 43, 0.55), rgba(0, 213, 255, 0.516));
 }
 
 .submitButton:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .submitButton.label {
