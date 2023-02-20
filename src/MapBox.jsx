@@ -21,22 +21,24 @@ const MapBox = ({idea, toggleShowForm}) => {
         >
             <Grid item xs={10} md={6}>
                 <Box sx={{bgcolor: '#cfe8fc', minHeight:"400px", boxShadow:"3px 3px 5px 0px rgba(0,0,0,0.75)"}}>
-                    <Box sx={{backgroundColor:'lightblue', height:'380px'}}>
+                    <Box sx={{height:'380px'}}>
 
-                        <img style={{width:"100%"}} src={loadingMap} alt="loading map"/>
+                        <img style={{width:"100%", height:"100%"}} src={loadingMap} alt="loading map"/>
                     {/* Display the generated map here */}
                     </Box>
                     <div style={{display:"flex", justifyContent:"space-around", padding:"5px"}}>
                         <Button
-                        sx={{margin:"10px"}}
+                        sx={{margin:"5px", fontWeight:900}}
+                        variant="contained"
                         className="submitButton">
                             <EditLocationOutlinedIcon/>
                             Make Edits & add more points
                         </Button>
                         <Button
                             className="submitButton"
+                            variant="contained"
                             onClick={() => toggleShowForm(true)}
-                            sx={{margin:"10px"}}
+                            sx={{margin:"5px", fontWeight:900}}
                             >
                                 <RestartAltOutlinedIcon/>
                             Reset and try again
@@ -45,17 +47,17 @@ const MapBox = ({idea, toggleShowForm}) => {
                 </Box>
             </Grid>
             <Grid item xs={10} md={4}>
-                <Box sx={{ minHeight:"200px", display:'flex', flexDirection:"column", justifyContent:'center', margin:"10px auto"}}>
+                <Box sx={{ minHeight:"200px", display:'flex', flexDirection:"column", justifyContent:'center', margin:"5px auto"}}>
                     <Typography>Share your {idea} map!</Typography>
-                    <img src={miniMap} alt="mini map share" 
-                    style={{maxWidth:"150px", height:'auto', boxShadow:"1px 1px 3px 0 #000", transform:"rotate(-9deg)", margin:"20px auto"}} />
+                        <img src={miniMap} alt="mini map share"  style={{maxWidth:"320px", height:'auto', boxShadow:"1px 1px 3px 0 #000", transform:"rotate(-9deg)", margin:"20px auto"}} />
                     <Link>Get Vertical Image</Link>
                     <Link>Get Horizontal Image</Link>
                     <Button
                     variant="contained"
                     color="primary"
                     type="submit"
-                    className="submitButton">
+                    className="submitButton"
+                    sx={{margin:"5px auto"}}>
                         <TwitterIcon/>
                          Twitter
                     </Button>
@@ -63,7 +65,8 @@ const MapBox = ({idea, toggleShowForm}) => {
                     variant="contained"
                     color="primary"
                     type="submit"
-                    className="submitButton">
+                    className="submitButton"
+                    sx={{margin:"5px auto"}}>
                         <FacebookIcon/>
                          Facebook
                     </Button>
@@ -71,7 +74,8 @@ const MapBox = ({idea, toggleShowForm}) => {
                     variant="contained"
                     color="primary"
                     type="submit"
-                    className="submitButton">
+                    className="submitButton"
+                    sx={{margin:"5px auto"}}>
                         <EmailIcon/>
                          Email
                     </Button>
@@ -79,7 +83,8 @@ const MapBox = ({idea, toggleShowForm}) => {
                     variant="contained"
                     color="primary"
                     type="submit"
-                    className="submitButton">
+                    className="submitButton"
+                    sx={{margin:"5px auto"}}>
                         <ShareIcon/>
                          Copy Map Link
                     </Button>
