@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/mapsgpt-clone/static/css/main.0974b2d7.css",
-    "main.js": "/mapsgpt-clone/static/js/main.1c12221d.js",
+    "main.js": "/mapsgpt-clone/static/js/main.22cbed00.js",
     "static/js/787.f19452cc.chunk.js": "/mapsgpt-clone/static/js/787.f19452cc.chunk.js",
     "static/media/dancingcat.gif": "/mapsgpt-clone/static/media/dancingcat.e059223df9832db85a02.gif",
     "static/media/mgpt_loading.gif": "/mapsgpt-clone/static/media/mgpt_loading.fe22d33a09df4913a57d.gif",
@@ -9,11 +9,11 @@
     "static/media/mapsGPT-logo.png": "/mapsgpt-clone/static/media/mapsGPT-logo.e517f4b8dace0183ce8d.png",
     "index.html": "/mapsgpt-clone/index.html",
     "main.0974b2d7.css.map": "/mapsgpt-clone/static/css/main.0974b2d7.css.map",
-    "main.1c12221d.js.map": "/mapsgpt-clone/static/js/main.1c12221d.js.map",
+    "main.22cbed00.js.map": "/mapsgpt-clone/static/js/main.22cbed00.js.map",
     "787.f19452cc.chunk.js.map": "/mapsgpt-clone/static/js/787.f19452cc.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0974b2d7.css",
-    "static/js/main.1c12221d.js"
+    "static/js/main.22cbed00.js"
   ]
 }
