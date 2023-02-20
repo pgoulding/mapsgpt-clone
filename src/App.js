@@ -1,28 +1,30 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 import logo from './mapsGPT-logo.png';
 import './App.css';
-import ContentFormContainer from './ContentFormContainer';
-import { Box, Typography, AppBar, Toolbar, Slide, Paper, Card } from '@mui/material';
+import { Box, Typography, AppBar, Container } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import MarqueeText from './MarqueeText';
 import LeaderBoard from './LeaderBoards';
+import BasicForm from './BasicForm';
+import MapBox from './MapBox';
 
 function App() {
   
   // could refactor these into fetches for real-time data
 
-  const textyTexterson = [
-    'lorem ipsum dolor sit amet consectetur',
-    'adipiscing elit curabitur vel hendrerit libero eleifend', 
-    'blandit nunc ornare odio ut orci', 
-    'gravida imperdiet nullam purus lacinia a pretium', 
-    'quis congue praesent sagittis laoreet auctor', 
-    'mauris non velit eros dictum proin accumsan', 
-    'sapien nec massa volutpat', 
-    'venenatis sed eu molestie', 
-    'lacus quisque porttitor ligula', 
-    'dui mollis tempus at magna vestibulum', 
-    'turpis ac diam'
+  const marqueeTextArr = [
+    'Romantic Sunrise',
+    'Places to get my creeative juices flowing', 
+    'Easiest places to crash a wedding', 
+    'Spots to break up with your partner', 
+    'Places to paddleboard', 
+    'Insta pictures spots', 
+    'Where to casually run into a billionaire', 
+    'Galentines day spots', 
+    'Where to find fireflies', 
+    'Places to have a shot encounter', 
+    'Secret Societies'
   ]
 
   const mostViewed = [
@@ -58,16 +60,53 @@ function App() {
     "places where people are chatty near kansas"
   ]
 
+  const [idea, setIdea] = useState('')
+  const [showForm, setShowForm] = useState(false)
+
+  useEffect(() => {
+    // default to a location near the user
+    navigator.geolocation.getCurrentPosition(function(position) {
+      console.log("Latitude is :", position.coords.latitude);
+      console.log("Longitude is :", position.coords.longitude);
+      // send to an API call to fetch the closest city
+    });
+  
+    return () => {
+      
+    }
+  }, [])
+  
+
+
+  const selectIdea = (passedIdea) =>{
+    console.log(passedIdea)
+    setIdea(passedIdea)
+  }
+
+  const toggleShowForm = (toggle) =>{
+    setShowForm(toggle)
+  }
+
 
   return (
     <div className="App">
         <AppBar position='sticky' sx={{flexDirection:'row',background:'#fcac08', height:'2rem'}}>
-            <MarqueeText textArray={textyTexterson} />
+            <MarqueeText textArray={marqueeTextArr} selectIdea={selectIdea}/>
         </AppBar>
         <div>
           <img src={logo} style={{maxWidth:"100%", height:'auto'}}/>
         </div>
-      <ContentFormContainer />
+        { showForm &&
+
+          <Container maxWidth="sm">
+            <Box sx={{ bgcolor: '#cfe8fc', minHeight: 300, padding:"20px"}}>
+                <BasicForm idea={idea} toggleShowForm={toggleShowForm}/>
+          </Box>
+        </Container>
+        }
+        { !showForm && 
+          <MapBox idea={idea} toggleShowForm={toggleShowForm}/>
+        }
       <Typography sx={{ mt: 2, mb: 1, padding:'1rem', fontStyle:'italic', color:'GrayText'}}>
         This map is curated out of aggregated data, however we can not guarantee it is completely accurate or is up to date. We recommend contacting locations on the map to verify the details. We are not responsible for any actions you take based on the produced map.
       </Typography>
@@ -80,7 +119,11 @@ function App() {
         height:'400px',
         flexGrow:1
         }}>
-        <Grid container spacing={{xs:2, md:3}} columns={{ xs: 4, sm: 8, md: 12 }}>
+        <Grid 
+          container 
+          spacing={{xs:2, md:3}} 
+          columns={{ xs: 4, sm: 8, md: 12 }} 
+          sx={{margin:'auto', alignItems:'flex-start'}}>
           <Grid xs={4} sm={4} md={4} >
             <LeaderBoard items={mostViewed} cardTitle={"MOST VIEWED"} />
           </Grid>

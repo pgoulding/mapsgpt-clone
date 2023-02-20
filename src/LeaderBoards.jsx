@@ -1,22 +1,18 @@
 import React from "react";
 import {
   Card,
-  CardHeader,
   CardContent,
-  List,
-  ListItem,
-  ListItemText,
   Typography,
 } from "@mui/material";
 
 const renderListItems = (items) =>
   items.map((item, index) => (
-    <li key={index}>
+    <li key={index} >
       {item}
     </li>
   ));
 
-const LeaderBoard = ({ items, cardTitle }) => {
+const LeaderBoard = ({ items, cardTitle}) => {
 
   return (
     <Card className={'card-leaderboard'} sx={{ bgcolor: '#cfe8fc', minHeight: 300, margin:'10px auto', padding:'10px', maxWidth: 800, overflow:'scroll'}}>
