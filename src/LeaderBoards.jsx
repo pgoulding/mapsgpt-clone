@@ -16,7 +16,7 @@ const LeaderBoard = ({ items, cardTitle}) => {
 
   return (
     <Card className={'card-leaderboard'} sx={{ bgcolor: '#cfe8fc', minHeight: 300, margin:'10px auto', padding:'10px', maxWidth: 800, overflow:'scroll'}}>
-      <Typography style={{margin:'10px'}}>{cardTitle}</Typography>
+      <Typography style={{margin:'10px'}} variant='h5'>{cardTitle}</Typography>
       <CardContent style={{textAlign:'left', padding:0}}>
         <ol className={'card-list'} sx={{width: "100%"}}>
           {renderListItems(items)}

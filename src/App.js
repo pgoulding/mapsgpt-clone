@@ -111,8 +111,8 @@ function App() {
         This map is curated out of aggregated data, however we can not guarantee it is completely accurate or is up to date. We recommend contacting locations on the map to verify the details. We are not responsible for any actions you take based on the produced map.
       </Typography>
 
-      <Typography>
-        Daily Leaders
+      <Typography variant='h4'>
+        DAILY LEADERS
       </Typography>
       <Box sx={{
         width:'100%',
