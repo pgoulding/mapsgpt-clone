@@ -29,12 +29,12 @@ const BasicForm = ({idea, toggleShowForm}) => {
     if (email === "") {
       setEmailError(true);
     }
-    if (place !== "" && area !== "" && email !== "" && !emailError) {
-      // do something with the form data, such as sending it to a server
+    if (place !== "" && area !== "" && email !== "") {
+      // // do something with the form data, such as sending it to a server
       setLoading(true)
       console.log({ place, area, email });
       
-      // mock waiting for server response 
+      // // mock waiting for server response 
       const interval = setTimeout(() => {
         setLoading(false)
         toggleShowForm(false)
@@ -57,15 +57,15 @@ const BasicForm = ({idea, toggleShowForm}) => {
 
 
 
-  // const verifyEmail = (inputText) => {
-  //   const mailformat = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-  //   console.log(inputText)
-  //   if(inputText.value.match(mailformat)){
-  //     return false
-  //   } else {
-  //     return true
-  //   }
-  // }
+  const verifyEmail = (inputText) => {
+    const mailformat = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+    console.log(inputText)
+    if(inputText.value.match(mailformat)){
+      return false
+    } else {
+      return true
+    }
+  }
 
   const handlePlaceChange = (event) => {
     setPlace(event.target.value);
@@ -95,11 +95,10 @@ const BasicForm = ({idea, toggleShowForm}) => {
       padding: '5px',
     }}>
     {loading &&
-    <React.Fragment>
+    <div style={{display:"flex", height:"200px", flexDirection:"column", justifyContent:"space-around", alignItems:"center"}}>
       <Typography>Building your Map...</Typography>
       <CircularProgress sx={{margin:'10px'}}/>
-      <img src={dancingCat} alt="Dancing cat loading image"/>
-    </React.Fragment>
+    </div>
     } 
     { !loading &&
     <React.Fragment>
