@@ -122,15 +122,15 @@ function App() {
         <Grid 
           container 
           spacing={{xs:2, md:3}} 
-          columns={{ xs: 4, sm: 8, md: 12 }} 
+          // columns={{ xs: 4, sm: 8, md: 12 }} 
           sx={{margin:'auto', alignItems:'flex-start'}}>
-          <Grid xs={4} sm={4} md={4} >
+          <Grid xs={12} s={6} md={4} >
             <LeaderBoard items={mostViewed} cardTitle={"MOST VIEWED"} />
           </Grid>
-          <Grid xs={4} sm={4} md={4}>
+          <Grid xs={12} s={6} md={4}>
             <LeaderBoard items={funnyPrompts} cardTitle={"PROMPTS TO MAKE YOU LAUGH"} />
           </Grid>
-          <Grid xs={4} sm={4} md={4} >
+          <Grid xs={12} s={6} md={4} >
             <LeaderBoard items={oddlySpecific} cardTitle={"ODDLY SPECIFIC"} />
           </Grid>
         </Grid>

@@ -11,3 +11,20 @@
   flex-direction: row;
   justify-content: space-around;
 }
+
+.leader-board-links {
+  background-color: #fcac08;
+  border-radius: 8px;
+  line-height: 20px;
+  margin:8px;
+  padding:8px;
+  display: inline-block;
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.leader-board-links:hover {
+  text-decoration: underline;
+  transform: scale(1.05);
+}

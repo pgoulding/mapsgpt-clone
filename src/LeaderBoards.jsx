@@ -7,20 +7,20 @@ import {
 
 const renderListItems = (items) =>
   items.map((item, index) => (
-    <li key={index} >
+      <a href="proxi.com" key={index} className="leader-board-links">
       {item}
-    </li>
+      </a>
   ));
 
 const LeaderBoard = ({ items, cardTitle}) => {
 
   return (
-    <Card className={'card-leaderboard'} sx={{ bgcolor: '#cfe8fc', minHeight: 300, margin:'10px auto', padding:'10px', maxWidth: 800, overflow:'scroll'}}>
+    <Card className={'card-leaderboard'} sx={{ bgcolor: '#cfe8fc', minHeight: 300, margin:'10px auto', padding:'10px', maxWidth: 1000, overflow:'scroll'}}>
       <Typography style={{margin:'10px'}} variant='h5'>{cardTitle}</Typography>
       <CardContent style={{textAlign:'left', padding:0}}>
-        <ol className={'card-list'} sx={{width: "100%"}}>
+        {/* <ol className={'card-list'} sx={{width: "100%"}}> */}
           {renderListItems(items)}
-        </ol>
+        {/* </ol> */}
       </CardContent>
     </Card>
   );
