@@ -59,7 +59,7 @@ const MapBox = ({idea, toggleShowForm}) => {
                     className="submitButton"
                     sx={{margin:"5px auto"}}>
                         <TwitterIcon/>
-                         Twitter
+                        Twitter
                     </Button>
                     <Button
                     variant="contained"
@@ -68,7 +68,7 @@ const MapBox = ({idea, toggleShowForm}) => {
                     className="submitButton"
                     sx={{margin:"5px auto"}}>
                         <FacebookIcon/>
-                         Facebook
+                        Facebook
                     </Button>
                     <Button
                     variant="contained"
@@ -77,7 +77,7 @@ const MapBox = ({idea, toggleShowForm}) => {
                     className="submitButton"
                     sx={{margin:"5px auto"}}>
                         <EmailIcon/>
-                         Email
+                        Email
                     </Button>
                     <Button
                     variant="contained"
@@ -86,7 +86,7 @@ const MapBox = ({idea, toggleShowForm}) => {
                     className="submitButton"
                     sx={{margin:"5px auto"}}>
                         <ShareIcon/>
-                         Copy Map Link
+                        Copy Map Link
                     </Button>
                 </Box>
             </Grid>
